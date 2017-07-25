@@ -1,0 +1,5 @@
+Scope,Project,Namespace,Type,Member,Maintainability Index,Cyclomatic Complexity,Depth of Inheritance,Class Coupling,Lines of Code
+Project,Solution.Project (Debug), , , ,91,123,2,30,207
+Namespace,Solution.Project,Solution.Project, , ,78,5,1,1,16
+Type,Solution.Project,Solution.Project,Class, ,81,1,1,0,3
+Member,Solution.Project,Solution.Project,Class,"Method(string, string)",81,1,,0,3
