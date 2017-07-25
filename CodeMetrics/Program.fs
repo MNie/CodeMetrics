@@ -60,8 +60,11 @@ let main argv =
                 HowManyChanges = numberOfChanges;
             }
         )
-        |> Seq.filter(fun x -> x.LastEdit >= fourWeeksAgo)
-        |> Seq.filter(fun x -> x.Complexity > 5)
+        |> Seq.filter(fun x -> 
+            x.LastEdit >= fourWeeksAgo &&
+            x.Complexity > 5 &&
+            x.HowManyChanges > 2
+        )
         |> Seq.sortByDescending(fun x -> x.Complexity)
         |> Seq.map(fun x -> File.AppendAllText(outputPath, sprintf "%s, %d, %s, %d, %A\n" x.Name x.Complexity x.FileName x.HowManyChanges x.LastEdit))
         |> Seq.toList
