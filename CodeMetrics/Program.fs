@@ -6,6 +6,7 @@ type MostlyChanged = CsvProvider<"data\mostlychanged.csv", ",">
 type LastChanged = CsvProvider<"data\lastchanged.csv", ",">
 type Metrics = CsvProvider<"data\codemetrics.csv", ",">
  
+[<StructuredFormatDisplay("{StructuredFormatDisplay}")>]
 type Info =
     {
         Name: string
@@ -14,6 +15,9 @@ type Info =
         LastEdit: DateTime
         HowManyChanges: int
     }
+
+    member this.StructuredFormatDisplay = 
+        sprintf "%s | %d | %s | %d | %A" this.Name this.Complexity this.FileName this.HowManyChanges this.LastEdit
 
 [<Literal>]
 let outputPath = "output.csv"
@@ -66,7 +70,7 @@ let main argv =
             x.HowManyChanges > 2
         )
         |> Seq.sortByDescending(fun x -> x.Complexity)
-        |> Seq.map(fun x -> File.AppendAllText(outputPath, sprintf "%s, %d, %s, %d, %A\n" x.Name x.Complexity x.FileName x.HowManyChanges x.LastEdit))
+        |> Seq.map(fun x -> File.AppendAllText(outputPath, sprintf "%A\n" x))
         |> Seq.toList
 
     0
