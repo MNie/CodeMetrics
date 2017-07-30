@@ -67,7 +67,7 @@ let main argv =
         |> Seq.filter(fun x -> 
             x.LastEdit >= fourWeeksAgo &&
             x.Complexity > 5 &&
-            x.HowManyChanges > 2
+            x.HowManyChanges > 5
         )
         |> Seq.sortByDescending(fun x -> x.Complexity)
         |> Seq.map(fun x -> File.AppendAllText(outputPath, sprintf "%A\n" x))
